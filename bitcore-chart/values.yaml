@@ -1,0 +1,20 @@
+# Default values for geth-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 1
+image:
+  repository: gcr.io/rehive-services/bitcore-node
+  tag: latest
+  pullPolicy: Always
+  command: 'bitcored'
+service:
+  name: nginx
+  type: NodePort
+  externalPort: 3001
+  internalPort: 3001
+data:
+  volumeSize: 500Gi
+  gcePersistentDiskName: bitcore-node-data
+  volumeName: bitcore-node-data
+nodeSelector: {cloud.google.com/gke-nodepool: bitcore-node-pool}
+
