@@ -6,12 +6,12 @@
 2. Fill in the values in `staging/values.yaml`
 
 3. Install the Helm chart:
-	`helm install --name bitcore-testnet --namespace bitcore-service-testnet -f ./staging/values.yaml ./bitcore-chart/`
+	`helm install --name bitcore --namespace bitcore-service-testnet --set NETWORK=testnet -f ./staging/values.yaml ./bitcore-chart/`
 
 # misc
 
 1. Tainting nodes:
-1. kubectl taint node gke-production-bitcore-node-pool-2422b335-9xlg dedicated=bitcore:NoSchedule
+1. kubectl taint node gke-staging-bitcore-node-pool-9a52a300-9x2f dedicated=bitcore:NoSchedule
 
 # local
 
