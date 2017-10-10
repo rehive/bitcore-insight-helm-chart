@@ -12,3 +12,7 @@
 
 1. Tainting nodes:
 1. kubectl taint node gke-production-bitcore-node-pool-2422b335-9xlg dedicated=bitcore:NoSchedule
+
+# local
+
+1. `docker run --env NETWORK=testnet --restart=unless-stopped -P -d -p 127.0.0.1:3001:3001 --name testnet gcr.io/rehive-services/bitcore-node:latest`

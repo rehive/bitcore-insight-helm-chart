@@ -6,7 +6,6 @@ image:
   repository: gcr.io/rehive-services/bitcore-node
   tag: latest
   pullPolicy: Always
-  command: 'bitcored'
 service:
   name: nginx
   type: NodePort

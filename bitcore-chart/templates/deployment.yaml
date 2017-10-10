@@ -17,7 +17,6 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
-        command: ["/bin/sh","-c", {{ .Values.image.command }}]
         volumeMounts:
         - mountPath: /root
           name: {{ .Values.data.volumeName }}
@@ -29,7 +28,7 @@ spec:
       tolerations:
         - key: "dedicated"
           operator: "Equal"
-          value: "geth"
+          value: "bitcore"
           effect: "NoSchedule"
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 8 }}
