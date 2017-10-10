@@ -18,8 +18,11 @@ spec:
         ports:
         - containerPort: {{ .Values.service.internalPort }}
         volumeMounts:
-        - mountPath: /root
+        - mountPath: /root/bitcoin-node/data/
           name: {{ .Values.data.volumeName }}
+        env:
+        - name: NETWORK
+          value: {{ .Values.NETWORK }}
       volumes:
       - name: {{ .Values.data.volumeName }}
         persistentVolumeClaim:
