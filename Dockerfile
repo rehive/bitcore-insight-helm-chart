@@ -15,6 +15,7 @@ ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 RUN npm i -g bitcore-node
 WORKDIR /root
 RUN bitcore-node create bitcoin-node
+COPY bitcore-node.json /root/bitcoin-node/
 WORKDIR /root/bitcoin-node
 RUN bitcore-node install insight-ui insight-api web
 ENTRYPOINT sed -i -- "s/livenet/${NETWORK}/g" /bitcoin-node/bitcore-node.json && \
