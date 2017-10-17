@@ -13,12 +13,11 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 RUN npm i -g bitcore-node
-RUN npm install -g bower
 RUN npm install -g grunt-cli
 WORKDIR /root
 RUN bitcore-node create bitcoin-node
 COPY bitcore-node.json /root/bitcoin-node/
 WORKDIR /root/bitcoin-node
-RUN bitcore-node install rehive-insight-ui insight-api web
-ENTRYPOINT sed -i -- "s/livenet/${NETWORK}/g" /bitcoin-node/bitcore-node.json && \
-    cd /bitcoin-node && bitcore-node start
+RUN bitcore-node install insight-ui insight-api web
+ENTRYPOINT sed -i -- "s/livenet/${NETWORK}/g" /root/bitcoin-node/bitcore-node.json && \
+    cd /root/bitcoin-node && bitcore-node start

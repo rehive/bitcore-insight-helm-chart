@@ -5,7 +5,7 @@
     "bitcoind",
     "insight-api",
     "web",
-    "rehive-insight-ui"
+    "insight-ui"
   ],
   "servicesConfig": {
     "bitcoind": {
@@ -18,7 +18,7 @@
       "routePrefix": "api",
       "enableCache": true
     },
-    "rehive-insight-ui": {
+    "insight-ui": {
       "apiPrefix": "api",
       "routePrefix": ""
     }
