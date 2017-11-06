@@ -1,6 +1,7 @@
 FROM ubuntu
 ARG NODE_VERSION=4.4.7
 ENV NETWORK=livenet
+ENV INTERNAL_SERVICE=bitcoin-service.bitcoin-service
 EXPOSE 3001
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apt-get update && apt-get install -y libzmq3-dev curl python build-essential git
@@ -20,4 +21,5 @@ COPY bitcore-node.json /root/bitcoin-node/
 WORKDIR /root/bitcoin-node
 RUN bitcore-node install insight-ui insight-api web
 ENTRYPOINT sed -i -- "s/livenet/${NETWORK}/g" /root/bitcoin-node/bitcore-node.json && \
+    sed -i -- "s/\"whitelist\": \[\"127.0.0.1\"\]/\"whitelist\"\: [\"${INTERNAL_SERVICE}\"]/g" && \
     cd /root/bitcoin-node && bitcore-node start

@@ -23,6 +23,7 @@ spec:
         env:
         - name: NETWORK
           value: {{ .Values.NETWORK }}
+          value: {{ .Values.INTERNAL_SERVICE }}
       volumes:
       - name: {{ .Values.data.volumeName }}
         persistentVolumeClaim:

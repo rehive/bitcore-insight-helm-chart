@@ -6,7 +6,7 @@
 2. Fill in the values in `staging/values.yaml`
 
 3. Install the Helm chart:
-	`helm install --name bitcore --namespace bitcore-service-testnet --set NETWORK=testnet -f ./staging/values.yaml ./bitcore-chart/`
+	`helm install --name bitcore --namespace bitcore-service-testnet --set NETWORK=testnet,INTERNAL_SERVICE=bitcoin-service.bitcoin-service-staging -f ./staging/values.yaml ./bitcore-chart/`
 
 # misc
 
