@@ -11,15 +11,13 @@
     "bitcoind": {
       "spawn": {
         "datadir": "./data",
-        "exec": "/usr/local/nvm/versions/node/v4.4.7/lib/node_modules/bitcore-node/bin/bitcoind"
+        "exec": "/usr/local/nvm/versions/node/v4.4.7/lib/node_modules/bitcore-node/bin/bitcoind -maxconnections=50"
       }
     },
     "insight-api": {
       "routePrefix": "api",
       "enableCache": true,
-      "rateLimiterOptions": {
-        "whitelist": ["127.0.0.1"]
-      }
+      "disableRateLimiter": true
     },
     "insight-ui": {
       "apiPrefix": "api",
