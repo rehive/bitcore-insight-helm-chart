@@ -22,6 +22,7 @@ WORKDIR /root/bitcore/
 RUN yarn
 WORKDIR /root
 COPY bitcore-node.json /root/bitcoin-node/
+COPY bitcoin.conf /root/bitcoin-node/data/bitcoin.conf
 WORKDIR /root/bitcoin
 ENTRYPOINT sed -i -- "s/livenet/${NETWORK}/g" /root/bitcoin-node/bitcore-node.json && \
     cd /root/bitcoin-node && /root/bitcore/bin/bitcore start

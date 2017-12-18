@@ -22,6 +22,6 @@ ingress:
         - bitcoin-node-testnet.rehive.io
 data:
   volumeSize: 500Gi
-  gcePersistentDiskName: bitcore-node-data-testnet
-  volumeName: bitcore-node-data-testnet
+  gcePersistentDiskName: bitcore-node-data-testnet-1
+  volumeName: bitcore-node-data-testnet-1
 nodeSelector: {cloud.google.com/gke-nodepool: bitcore-node-pool}
