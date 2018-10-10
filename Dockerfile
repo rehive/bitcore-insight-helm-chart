@@ -16,8 +16,7 @@ ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 RUN ln -s $(which node) /usr/bin/nodejs
 RUN npm install -g grunt-cli
 RUN npm install -g yarn
-RUN mkdir /bitcore/ && groupadd -r bitcore && useradd --no-log-init -r -g bitcore bitcore && chown -R bitcore:bitcore /bitcore && chown -R bitcore:bitcore /home/ 
-USER bitcore
+RUN mkdir /bitcore/
 WORKDIR /bitcore
 RUN git clone https://github.com/michailbrynard/bitcore.git
 WORKDIR /bitcore/bitcore/
