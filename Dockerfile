@@ -1,5 +1,5 @@
 FROM ubuntu
-ARG NODE_VERSION=4.8.0
+ARG NODE_VERSION=8.12.0
 ENV NETWORK=livenet
 ENV INTERNAL_SERVICE=bitcoin-service.bitcoin-service
 EXPOSE 3001
@@ -16,13 +16,17 @@ ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 RUN ln -s $(which node) /usr/bin/nodejs
 RUN npm install -g grunt-cli
 RUN npm install -g yarn
-WORKDIR /root
-RUN git clone https://github.com/rehive/bitcore.git
-WORKDIR /root/bitcore/
+RUN mkdir /bitcore/ && groupadd -r bitcore && useradd --no-log-init -r -g bitcore bitcore && chown -R bitcore:bitcore /bitcore && chown -R bitcore:bitcore /home/ 
+USER bitcore
+WORKDIR /bitcore
+RUN git clone https://github.com/michailbrynard/bitcore.git
+WORKDIR /bitcore/bitcore/
 RUN yarn
-WORKDIR /root
-COPY bitcore-node.json /root/bitcoin-node/
-COPY bitcoin.conf /root/bitcoin-node/data/bitcoin.conf
-WORKDIR /root/bitcoin
-ENTRYPOINT sed -i -- "s/livenet/${NETWORK}/g" /root/bitcoin-node/bitcore-node.json && \
-    cd /root/bitcoin-node && /root/bitcore/bin/bitcore start
+WORKDIR /bitcore
+COPY bitcore-node.json /bitcore/bitcoin-node/
+COPY bitcoin.conf /bitcore/bitcoin-node/data/bitcoin.conf
+WORKDIR /bitcore/bitcoin
+
+
+ENTRYPOINT sed -i -- "s/livenet/${NETWORK}/g" /bitcore/bitcoin-node/bitcore-node.json && \
+    cd /bitcore/bitcoin-node && /bitcore/bitcore/bin/bitcore start

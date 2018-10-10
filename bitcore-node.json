@@ -1,27 +1,34 @@
 {
   "network": "livenet",
   "port": 3001,
+  "datadir": "/tmp",
   "services": [
-    "bitcoind",
+    "p2p",
+    "db",
+    "header",
+    "block",
+    "mempool",
+    "address",
+    "transaction",
+    "timestamp",
+    "fee",
     "insight-api",
-    "web",
-    "insight-ui"
+    "web"
   ],
   "servicesConfig": {
-    "bitcoind": {
-      "spawn": {
-        "datadir": "./data",
-        "exec": "/root/bitcore/node_modules/bitcore-node/bin/bitcoind"
-      }
-    },
     "insight-api": {
       "routePrefix": "api",
-      "enableCache": true,
-      "disableRateLimiter": true
+      "disableRateLimiter": true,
+      "enableCache": true
     },
-    "insight-ui": {
-      "apiPrefix": "api",
-      "routePrefix": ""
+    "fee": {
+      "rpc": {
+        "user": "local",
+        "pass": "local",
+        "host": "localhost",
+        "protocol": "http",
+        "port": 18332
+      }
     }
   }
 }
