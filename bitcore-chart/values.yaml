@@ -15,5 +15,6 @@ data:
   volumeSize: 500Gi
   gcePersistentDiskName: bitcore-node-data
   volumeName: bitcore-node-data
+  storageClassName: ""
 nodeSelector: {cloud.google.com/gke-nodepool: bitcore-node-pool}
 

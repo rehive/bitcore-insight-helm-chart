@@ -21,6 +21,10 @@
       "disableRateLimiter": true,
       "enableCache": true
     },
+    "insight-ui": {
+      "apiPrefix": "api",
+      "routePrefix": ""
+    },
     "fee": {
       "rpc": {
         "user": "local",
